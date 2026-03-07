@@ -15,7 +15,7 @@ def get_user_ids(user_id):
     conn = create_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT * FROM ids WHERE user_id=?", (user_id))
+    cursor.execute("SELECT * FROM ids WHERE user_id=?", (user_id,))
     ids = cursor.fetchall()
 
     conn.close()

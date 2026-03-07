@@ -7,6 +7,7 @@ from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from screens.add_id_screen import AddIDScreen
 from models.id_model import add_id
+from screens.view_ids_screen import ViewIDsScreen
 
 Builder.load_file("ui/design.kv")
 
@@ -27,6 +28,7 @@ class DigitalIDApp(App):
         self.sm.add_widget(RegisterScreen(name="register"))
         self.sm.add_widget(DashboardScreen(name="dashboard"))
         self.sm.add_widget(AddIDScreen(name="add_id"))
+        self.sm.add_widget(ViewIDsScreen(name="view_ids"))
         return self.sm
 
     def login(self, email, password):

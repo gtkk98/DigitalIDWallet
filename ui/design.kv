@@ -81,8 +81,8 @@
 <DashboardScreen>:
     BoxLayout:
         orientation: "vertical"
-        spacing: 20
         padding: 40
+        spacing: 20
 
         Label:
             text: "Digital ID Wallet"
@@ -92,6 +92,11 @@
             text: "Add New ID"
             on_release:
                 app.root.current = "add_id"
+
+        Button:
+            text: "View My IDs"
+            on_release:
+                app.root.current = "view_ids"
 
 <AddIDScreen>:
     BoxLayout:
@@ -130,5 +135,31 @@
 
         Button:
             text: "Back"
+            on_release:
+                app.root.current = "dashboard"
+
+<ViewIDsScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 20
+
+        Label:
+            text: "My Digital IDs"
+            font_size: 28
+
+        ScrollView:
+
+            GridLayout:
+                id: id_list
+                cols: 1
+                spacing: 20
+                size_hint_y: None
+                height: self.minimum_height
+
+        Button:
+            text: "Back"
+            size_hint_y: None
+            height: 50
             on_release:
                 app.root.current = "dashboard"
