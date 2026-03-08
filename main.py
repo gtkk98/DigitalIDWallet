@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager
+from models.id_model import create_table
 
 from screens.home_screen import HomeScreen
 from screens.add_id_screen import AddIDScreen
@@ -9,6 +10,9 @@ from screens.view_ids_screen import ViewIDsScreen
 class DigitalIDApp(App):
 
     def build(self):
+
+        create_table()
+
         sm = ScreenManager()
 
         sm.add_widget(HomeScreen(name="home"))
