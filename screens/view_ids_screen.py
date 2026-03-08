@@ -4,6 +4,8 @@ from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.scrollview import ScrollView
 
+from models.id_model import get_ids
+
 
 class ViewIDsScreen(Screen):
 
@@ -32,3 +34,24 @@ class ViewIDsScreen(Screen):
         main_layout.add_widget(back_btn)
 
         self.add_widget(main_layout)
+
+    def load_ids(self, instance):
+
+        self.ids_layout.clear_widgets()
+
+        ids = get_ids()
+
+        for data in ids:
+
+            id_text = f"Name: {data[1]}\nID Number: {data[2]}\nImage: {data[3]}"
+
+            label = Label(
+                text=id_text,
+                size_hint_y=None,
+                height=120
+            )
+
+            self.ids_layout.add_widget(label)
+
+    def go_home(self, instance):
+        self.manager.current = "home"
