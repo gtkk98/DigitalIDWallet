@@ -1,31 +1,24 @@
-from kivy.uix.screenmanager import Screen
-from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
-from models.id_model import get_user_ids
+from kivy.uix.screenmanager import Screen
+from kivy.uix.button import Button
+from kivy.uix.label import Label
 
 
 class ViewIDsScreen(Screen):
 
-    def on_pre_enter(self):
-        self.load_ids()
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
-    def load_ids(self):
-        container = self.ids.id_list
-        container.clear_widgets()
+        layout = BoxLayout(orientation='vertical', spacing=20, padding=40)
 
-        ids = get_user_ids(1)
+        layout.add_widget(Label(text="View IDs Screen"))
 
-        for id_data in ids:
-            card = BoxLayout(
-                orientation="vertical",
-                padding=10,
-                spacing=5,
-                size_hint_y=None,
-                height=150
-            )
+        back_btn = Button(text="Back to Home")
+        back_btn.bind(on_press=self.go_home)
 
-            card.add_widget(Label(text=f"ID Type: {id_data[2]}"))
-            card.add_widget(Label(text=f"ID Number: {id_data[3]}"))
-            card.add_widget(Label(text=f"Expiry Date: {id_data[4]}"))
+        layout.add_widget(back_btn)
 
-            container.add_widget(card)
+        self.add_widget(layout)
+
+    def go_home(self, instance):
+        self.manager.current = "home"
